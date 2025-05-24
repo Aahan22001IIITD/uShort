@@ -1,0 +1,17 @@
+{
+  "name": "ushort",
+  "version": "1.0.1",
+  "description": "an application for making the urls short",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0",
+    "nanoid": "^5.1.5",
+    "nodemon": "^3.1.10"
+  }
+}

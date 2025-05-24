@@ -1,0 +1,19 @@
+application design for url shortener 
+
+schema 
+- orginal url 
+- short url 
+- timestamps array for a url 
+
+routes 
+
+=> post request with a short url , -> we will create a short url and store it, if its not present 
+=> get request with a short url , -> we will return the original url 
+=> get shortid/originalid/analytics request with the short url / original url -> we will show the stats of that short/original url 
+
+
+
+
+
+
+
