@@ -2,3 +2,24 @@
 POST http://localhost:3002/api/url
 Content-Type: application/json
 USER-ACCESS-TOKEN:AAHAN_TESTING
+
+{
+    "url":"https://www.google.com"
+}
+// delete the url 
+###
+POST http://localhost:3002/api/url/delete
+Content-Type: application/json
+USER-ACCESS-TOKEN:AAHAN_TESTING
+
+{
+    "shortid":"VFMYg"
+}
+
+
+// to view a url and its short id
+
+###
+GET http://localhost:3002/api/url/analytics
+Content-Type: application/json
+USER-ACCESS-TOKEN:AAHAN_TESTING

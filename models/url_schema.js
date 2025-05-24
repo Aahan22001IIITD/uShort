@@ -8,7 +8,7 @@ const urlSchema = new mongoose.Schema({
     },
     original_url:{
         type:String,
-        
+        required:true,
     },
     // an array to store the time stamps of the url
     timestamps:[{
