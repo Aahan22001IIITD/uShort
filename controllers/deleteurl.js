@@ -13,7 +13,7 @@ async function handleDelete(req,res){
         return res.status(400).json({error:"shortid not found"});
     }
     await Url.deleteOne({short_id:shortid});
-    return res.json({message:"url deleted successfully"});
+    return res.json({success:200,message:"url deleted successfully"});
     
 }
 module.exports={handleDelete};

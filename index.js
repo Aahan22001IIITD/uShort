@@ -1,12 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
-const app = express();
-app.set('view engine', 'ejs');
 const connectToMongoDB = require('./config/connection');
-connectToMongoDB();
 const urlRouter = require('./routes/urlRouter');
 const PORT = process.env.PORT || 3000;
+const app = express();
+dotenv.config();
+app.set('view engine', 'ejs');
+app.set("views","./views");
+connectToMongoDB();
 if(!PORT)
 {
     console.log("PORT is not set");

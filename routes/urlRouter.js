@@ -4,6 +4,8 @@ const {handleCreate} = require('../controllers/urlcreater');
 const {handleAnalytics} = require('../controllers/url_analytics');
 const {handleRedirect} = require('../controllers/redirectLogic');
 const {handleDelete} = require('../controllers/deleteurl.js');
+const {url_creation_page} = require('../controllers/url_creation_page.js');
+const {handleReset} = require('../controllers/reseturl.js');
 const dotenv = require('dotenv');
 dotenv.config();
 function checkUserToken(req, res, next) {
@@ -23,6 +25,11 @@ router.use('/api/url', checkUserToken);
 
 router.post('/api/url',handleCreate);
 router.post('/api/url/:shortid/analytics',handleAnalytics);
-router.get('/:shortid',handleRedirect);
+router.get('/short/:shortid',handleRedirect);
 router.post('/api/url/delete',handleDelete);
+router.post('/api/url/reset',handleReset);
+router.get('/create_url'  , url_creation_page )
+router.get('/',(req,res)=>{
+    res.render('home');
+});
 module.exports = router;

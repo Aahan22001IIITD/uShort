@@ -1,0 +1,80 @@
+<!--  create a form to put in a url and that creates a short url -->
+<form id="urlForm">
+    <input type="text" name="url" placeholder="Enter the url">
+    <button type="submit">Create Short URL</button>
+</form>
+<button id="resetButton">Reset</button>
+<script>
+    document.getElementById('urlForm').addEventListener('submit', function(event) {
+        // event.preventDefault();
+        const url = event.target.url.value;
+        fetch('/api/url', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-access-token': '<%=userAccessToken %>'
+            },
+            body: JSON.stringify({ url })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // You can add code here to update the UI with the response data
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+    document.getElementById('resetButton').addEventListener('click', function() {
+        fetch('/api/url/reset', {
+            method: 'POST',
+            headers: {
+                'user-access-token': '<%= userAccessToken %>'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("All urls deleted");
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+    function deleteUrl(shortid){
+        fetch(`/api/url/delete`, {
+            method: 'POST',
+            headers: {
+                'user-access-token': '<%= userAccessToken %>',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ shortid })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+<table>
+    <thead>
+        <tr>
+            <th>Short ID</th>
+            <th>Original URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% urls.forEach(url => { %>
+            <tr>
+                <td><%= url.short_id %></td>
+                <td><%= url.original_url %></td>
+                <td><a href="/short/<%= url.short_id %>">Visit</a></td>
+                <td><button onclick="deleteUrl('<%= url.short_id %>')">Delete</button></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>

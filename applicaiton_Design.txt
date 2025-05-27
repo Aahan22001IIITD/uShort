@@ -6,12 +6,16 @@ schema
 - timestamps array for a url 
 
 routes 
-
+completed
 => post request with a short url , -> we will create a short url and store it, if its not present 
 => get request with a short url , -> we will return the original url 
 => get shortid/originalid/analytics request with the short url / original url -> we will show the stats of that short/original url 
-
-
+=> add a reset button to delete all the urls 
+=> to delete a url 
+pending
+=> add user functionality
+=> add auth token to the user
+=> user dashboard
 
 
 
