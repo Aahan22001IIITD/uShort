@@ -1,10 +1,11 @@
 const {nanoid} = require('nanoid');
 const Url = require('../models/url_schema');
-
-
+const {getUserSession} = require('../services/auth');
 async function handleCreate(req , res)
 {
     const requestbody = req.body;
+    const token = req.cookies.token;
+    const user_id = await getUserSession(token);
     if(!requestbody.url)
     {
         return res.status(400).json({error:"url is required"});
@@ -23,7 +24,8 @@ async function handleCreate(req , res)
     await Url.create({
         "original_url":requestbody.url,
         "short_id":shortid,
-        "timestamps":[]
+        "timestamps":[],
+        "user_id":user_id
     });
     
     return res.json({

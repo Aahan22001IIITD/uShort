@@ -6,9 +6,8 @@
 <button id="resetButton">Reset</button>
 <script>
     document.getElementById('urlForm').addEventListener('submit', function(event) {
-        // event.preventDefault();
         const url = event.target.url.value;
-        fetch('/api/url', {
+        fetch('/url/api/url', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +25,7 @@
         });
     });
     document.getElementById('resetButton').addEventListener('click', function() {
-        fetch('/api/url/reset', {
+        fetch('url/api/url/reset', {
             method: 'POST',
             headers: {
                 'user-access-token': '<%= userAccessToken %>'
@@ -42,7 +41,7 @@
         });
     });
     function deleteUrl(shortid){
-        fetch(`/api/url/delete`, {
+        fetch(`/url/api/url/delete`, {
             method: 'POST',
             headers: {
                 'user-access-token': '<%= userAccessToken %>',
@@ -72,7 +71,7 @@
             <tr>
                 <td><%= url.short_id %></td>
                 <td><%= url.original_url %></td>
-                <td><a href="/short/<%= url.short_id %>">Visit</a></td>
+                <td><a href="/url/short/<%= url.short_id %>">Visit</a></td>
                 <td><button onclick="deleteUrl('<%= url.short_id %>')">Delete</button></td>
             </tr>
         <% }); %>

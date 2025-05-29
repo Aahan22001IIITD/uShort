@@ -13,9 +13,11 @@ completed
 => add a reset button to delete all the urls 
 => to delete a url 
 pending
-=> add user functionality
+=> add user functionality - added a signup and login page 
 => add auth token to the user
 => user dashboard
+
+==> admin functionality 
 
 
 
